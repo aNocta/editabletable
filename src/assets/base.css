@@ -1,0 +1,4 @@
+.data-table{
+  margin-inline: auto;
+  width: min(100%, 98vw);
+}

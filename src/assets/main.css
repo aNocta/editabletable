@@ -1,0 +1,105 @@
+:root{
+  --main-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --gray: rgba(0, 0, 0, 0.175);
+}
+
+.data-table{
+  margin-inline: auto;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.175);
+  border-radius: .375rem;
+}
+
+.data-table :is(header, footer){
+  background-color: rgba(0, 0, 0, 0.03);
+  padding: 8px 16px;
+  font-family: var(--main-font);
+}
+.data-table header{
+  border-bottom: 1px solid var(--gray);
+}
+.data-table footer{
+  border-top: 1px solid var(--gray);
+  color: #6c757d;
+  font-size: 0.875em;
+}
+.data-table .editable-table{
+  width: calc(100% - 2rem);
+  border-collapse: collapse;
+  margin: 1rem;
+  table-layout: fixed;
+}
+.data-table th{
+  border: 1px solid var(--gray);
+  padding: 0.5rem 0.5rem;
+  text-align: start;
+  font-family: var(--main-font);
+}
+.editable-table__cell{
+  display: flex;
+  justify-content: space-between;
+}
+.editable-table__btn{
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  opacity: 0;
+  transition: .3s opacity;
+}
+.data-table tbody th{
+  font-weight: 400;
+  transition: .3s background;
+}
+.data-table tbody th:hover{
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.032);
+}
+
+.data-table tbody th:hover .editable-table__btn{
+  opacity: 1;
+}
+:is(.editable-table, .table-mass-edit) form{
+  display: flex;
+  gap: 15px;
+}
+:is(.editable-table, .table-mass-edit) input{
+  width: 100%;
+  padding: .5rem 1rem;
+  border-radius: .3rem;
+  border: 1px solid var(--gray);
+  font-size: 1rem;
+  transition: .3s;
+}
+:is(.editable-table, .table-mass-edit) input:focus{
+  border-color: black;
+  outline: none;
+}
+:is(.editable-table, .table-mass-edit) form button{
+  background-color: transparent;
+  color: black;
+  border: 1px solid black;
+  border-radius: .3rem;
+  padding: .5rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: .3s;
+}
+:is(.editable-table, .table-mass-edit) form button:hover{
+  background-color: black;
+  color: white;
+}
+
+.table-mass-edit{
+  display: grid;
+  justify-content: flex-start;
+  width: fit-content;
+  gap: 10px;
+  margin-top: 1.5rem;
+  padding: 1rem .5rem;
+  border: 1px solid var(--gray);
+  border-radius: 1rem;
+}
+.table-mass-edit span{
+  font-size: 1rem;
+  font-family: var(--main-font);
+}
