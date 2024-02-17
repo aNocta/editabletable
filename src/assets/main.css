@@ -31,13 +31,13 @@
 }
 .data-table th{
   border: 1px solid var(--gray);
-  padding: 0.5rem 0.5rem;
   text-align: start;
   font-family: var(--main-font);
 }
 .editable-table__cell{
   display: flex;
   justify-content: space-between;
+  padding: 0.5rem 0.5rem;
 }
 .editable-table__btn{
   background-color: transparent;
@@ -61,6 +61,9 @@
 :is(.editable-table, .table-mass-edit) form{
   display: flex;
   gap: 15px;
+}
+.editable-table :is(form), .editable-table :is(thead, tfoot) th{
+  padding: 0.5rem 0.5rem;
 }
 :is(.editable-table, .table-mass-edit) input{
   width: 100%;
