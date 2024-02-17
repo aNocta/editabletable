@@ -50,6 +50,10 @@
   font-weight: 400;
   transition: .3s background;
 }
+.data-table tbody th span{
+  white-space: pre-wrap;
+  word-break: break-word;
+}
 .data-table tbody th:hover{
   cursor: pointer;
   background: rgba(0, 0, 0, 0.032);
