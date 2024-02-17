@@ -98,9 +98,9 @@
   width: fit-content;
   gap: 10px;
   margin-top: 1.5rem;
-  padding: 1rem .5rem;
+  padding: 1rem;
   border: 1px solid var(--gray);
-  border-radius: 1rem;
+  border-radius: .3rem;
 }
 .table-mass-edit span{
   font-size: 1rem;
