@@ -24,9 +24,11 @@
 </script>
 
 <template>
-    <tr :class="{active: isEditable}" :style="{gridTemplateColumns: `repeat(${cells.length}, 1fr)`}">
+    <tr :class="{active: isEditable}" :style="{gridTemplateColumns: `repeat(${cells.length}, 1fr) 50px`}">
         <EditableTableCell v-for="cell,k in cells" :key="k" :cellValue="cell" :rowIndex="rowIndex" :colIndex="k" :selected="isSelected(rowIndex, k)"></EditableTableCell>
-        <MassEditTrigger @edit="selectRow"/>
+        <th>
+            <MassEditTrigger @edit="selectRow"/>
+        </th>
     </tr>
 </template>
 

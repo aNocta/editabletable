@@ -6,8 +6,8 @@
 
 <style scoped>
     .table-mass-trigger{
-        position: absolute;
-        right: -.9rem;
-        top: calc(50% - 10px);
+        display: grid;
+        place-items: center;
+        height: 100%;
     }
 </style>
