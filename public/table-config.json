@@ -1,0 +1,24 @@
+{
+    "backendDomain": "https://editableback.vercel.app",
+    "set": {
+        "endpoint": "/set_cell",
+        "tableIdField": "tableId",
+        "rowField": "row",
+        "colField": "col",
+        "valField": "value"
+    },
+    "multiSet": {
+        "endpoint": "/mass_set_cell",
+        "tableIdField": "table_id",
+        "rowField": "row",
+        "colField": "col",
+        "valField": "value"
+    },
+    "get": {
+        "endpoint": "/cells",
+        "tableIdField": "table_id",
+        "cellsField": "cells",
+        "rowField": "row",
+        "colField": "col"
+    }
+}

@@ -1,22 +1,25 @@
 <script setup>
     import { useTableStore } from '@/store';
-    import { defineProps } from 'vue';
+    import { defineProps, ref } from 'vue';
 
     const props = defineProps(["cellValue", "rowIndex", "colIndex", "selected"]);
     const tableStore = useTableStore();
 
+    const isEdit = ref(false);
+
     const editModeComplete = e => {
         tableStore.change(props.rowIndex, props.colIndex, e.target.elements[`cell${props.rowIndex}${props.colIndex}`].value);
+        isEdit.value = false;
     }
 </script>
 
 <template>
-    <th>
-        <form v-if="props.selected" @submit.prevent="editModeComplete"  action="#">
+    <th :class="{selected: tableStore.selectedCols.indexOf(props.colIndex) >= 0}">
+        <form v-if="isEdit" @submit.prevent="editModeComplete"  action="#">
             <input type="text" placeholder="Введите значение" :value="props.cellValue" :id="`cell${props.rowIndex}${props.colIndex}`">
             <button>ok</button>
         </form>
-        <div v-if="!props.selected" @click="tableStore.select(props.rowIndex, props.colIndex)" class="editable-table__cell">
+        <div v-if="!isEdit" @click="isEdit = true" class="editable-table__cell">
             <span>
                 {{ props.cellValue }}
             </span>

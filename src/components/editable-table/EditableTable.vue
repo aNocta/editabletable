@@ -1,7 +1,8 @@
 <script setup>
   import {defineProps} from "vue";
   import EditableTableRow from "./EditableTableRow.vue";
-import { useTableStore } from "@/store";
+  import { useTableStore } from "@/store";
+  import EditableTableColHeader from "./EditableTableColHeader.vue";
 
   const tableStore = useTableStore();
    const props =  defineProps({
@@ -13,16 +14,16 @@ import { useTableStore } from "@/store";
 <template>
     <table class="editable-table">
         <thead>
-            <tr>
-                <th v-for="(hc, k) in props.header" :key="k">{{ hc }}</th>
+            <tr :style="{gridTemplateColumns: `repeat(${props.header.length}, 1fr)`}">
+                <EditableTableColHeader v-for="(hc, k) in props.header"  :col="k" :key="k">{{ hc }}</EditableTableColHeader>
             </tr>
         </thead>
         <tbody>
-            <EditableTableRow v-for="row,k in tableStore.cells" :key="k" :cells="row" :rowIndex="k"/>
+            <EditableTableRow v-for="row,k in tableStore.cells" :key="k" :cells="row" :rowIndex="k" :isEditable="tableStore.selectedRows.indexOf(k) >= 0"/>
         </tbody>
         <tfoot>
-            <tr>
-                <th v-for="(hc, k) in props.footer" :key="k">{{ hc }}</th>
+            <tr :style="{gridTemplateColumns: `repeat(${props.header.length}, 1fr)`}">
+                <EditableTableColHeader v-for="(hc, k) in props.header"  :col="k" :key="k">{{ hc }}</EditableTableColHeader>
             </tr>
         </tfoot>
     </table>

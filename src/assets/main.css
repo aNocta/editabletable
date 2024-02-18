@@ -1,6 +1,7 @@
 :root{
   --main-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --gray: rgba(0, 0, 0, 0.175);
+  --select-color: rgb(0 0 255 / 0.05);
 }
 
 .data-table{
@@ -24,6 +25,7 @@
   font-size: 0.875em;
 }
 .data-table .editable-table{
+  display: grid;
   width: calc(100% - 2rem);
   border-collapse: collapse;
   margin: 1rem;
@@ -38,6 +40,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 0.5rem;
+  gap: 10px;
 }
 .editable-table__btn{
   background-color: transparent;
@@ -50,11 +53,27 @@
   font-weight: 400;
   transition: .3s background;
 }
-.data-table tbody th span{
+.data-table tbody tr{position: relative;}
+.data-table tbody tr.active{
+  background-color: var(--select-color);
+}
+.data-table tbody tr input[type="checkbox"]{
+  display: none;
+}
+.data-table tbody tr:hover input[type="checkbox"]{
+  display: inline-block;
+}
+.data-table tr{
+  display: grid;
+}
+.data-table th span{
   white-space: pre-wrap;
   word-break: break-word;
 }
-.data-table tbody th:hover{
+.data-table th.selected{
+  background-color: var(--select-color);
+}
+.data-table th:hover{
   cursor: pointer;
   background: rgba(0, 0, 0, 0.032);
 }
@@ -66,7 +85,7 @@
   display: flex;
   gap: 15px;
 }
-.editable-table :is(form), .editable-table :is(thead, tfoot) th{
+.editable-table form{
   padding: 0.5rem 0.5rem;
 }
 :is(.editable-table, .table-mass-edit) input{
