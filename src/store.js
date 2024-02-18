@@ -1,4 +1,3 @@
-import {getCurrentInstance} from "vue";
 import { defineStore } from "pinia";
 import axios from "axios";
 import { jsonManager } from "./jsonManager";
@@ -11,7 +10,7 @@ export const useTableStore = defineStore("tableStore", {
         selectedRows: [],
         selectedCols: [],
         tableConfig: {},
-        appConfig: getCurrentInstance().appContext.config.globalProperties.$tableConfig
+        appConfig: {}
     }),
     getters: {
         selectedCount: state => {
@@ -29,13 +28,13 @@ export const useTableStore = defineStore("tableStore", {
             this.tableConfig = await jsonManager();
         },
         async fetchCells(){
+            this.appConfig = this.$appData;
             const appConfig =  this.appConfig;
             this.tableConfig = await jsonManager();
             const tableConfig =  this.tableConfig;
             const cellData = await axios.get(`${tableConfig.backendDomain}${tableConfig.get.endpoint}?${tableConfig.get.tableIdField}=${appConfig.tableEndpointId}`);
             const fetched = cellData.data;
             const toLoad = [];
-            console.log(`${tableConfig.backendDomain}${tableConfig.get.endpoint}?${tableConfig.get.tableIdField}=${appConfig.tableEndpointId}`);
             fetched.forEach(item => {
             if(!toLoad[item[tableConfig.get.rowField]]) toLoad[item[tableConfig.get.rowField]] = [];
                  toLoad[item[tableConfig.get.rowField]][item[tableConfig.get.colField]]  = item.value;
