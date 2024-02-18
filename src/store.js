@@ -33,6 +33,7 @@ export const useTableStore = defineStore("tableStore", {
             this.tableConfig = await jsonManager();
             const tableConfig =  this.tableConfig;
             const cellData = await axios.get(`${tableConfig.backendDomain}${tableConfig.get.endpoint}?${tableConfig.get.tableIdField}=${appConfig.tableEndpointId}`);
+            console.log(`${tableConfig.backendDomain}${tableConfig.get.endpoint}?${tableConfig.get.tableIdField}=${appConfig.tableEndpointId}`);
             const fetched = cellData.data;
             const toLoad = [];
             fetched.forEach(item => {
