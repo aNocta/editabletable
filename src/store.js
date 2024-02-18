@@ -11,7 +11,7 @@ export const useTableStore = defineStore("tableStore", {
         selectedRows: [],
         selectedCols: [],
         tableConfig: {},
-        appConfig: {}
+        appConfig: getCurrentInstance().appContext.config.globalProperties.$tableConfig
     }),
     getters: {
         selectedCount: state => {
@@ -29,7 +29,6 @@ export const useTableStore = defineStore("tableStore", {
             this.tableConfig = await jsonManager();
         },
         async fetchCells(){
-            this.appConfig = getCurrentInstance().appContext.config.globalProperties.$tableConfig;
             const appConfig =  this.appConfig;
             this.tableConfig = await jsonManager();
             const tableConfig =  this.tableConfig;
